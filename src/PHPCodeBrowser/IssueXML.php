@@ -155,6 +155,9 @@ class IssueXML extends DOMDocument
     public function addXMLFile(DOMDocument $domDocument): void
     {
         foreach ($domDocument->childNodes as $node) {
+			if ($node instanceof DOMDocumentType) {
+				continue;
+			}
             $this->documentElement->appendChild($this->importNode($node, true));
         }
     }
